@@ -1,0 +1,10 @@
+Assignment 1
+create a variable and assign it an empty array
+Add student names to the array, about 5 students
+Add another student to the end of list
+Add another student to the start of list
+Add another student at index 3 to the list
+Add another student at index 2 and remove 3 students from the list
+Remove a student from the list at the start
+Remove a student from the list at the end of the list
+
