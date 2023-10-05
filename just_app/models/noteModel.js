@@ -7,6 +7,10 @@ const noteSchema = new mongoose.Schema(
 			trim: true,
 			required: [true, "Please provide a note title"],
 		},
+		user_id: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: "User",
+		},
 		content: {
 			type: String,
 			required: [true, "Please provide a note title"],

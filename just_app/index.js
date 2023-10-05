@@ -1,6 +1,9 @@
 const express = require("express")
 require("dotenv").config()
-const notesRouter = require("./routes/notesRoutes")
+const morgan = require("morgan")
+const cookieParser = require("cookie-parser")
+const cors = require("cors")
+const fs = require("fs")
 const { notFound, errorHandler } = require("./middleware/errorHandler")
 const mongoose = require("mongoose")
 const dbCon = require("./config/db")
@@ -12,10 +15,15 @@ const port = process.env.PORT || 8800
 mongoose.set("strictQuery", true)
 dbCon()
 
+app.use(cors())
+app.use(cookieParser())
+app.use(morgan("dev"))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-app.use("/", notesRouter)
+fs.readdirSync("./routes").map((route) => {
+	app.use("/", require("./routes/" + route))
+})
 
 app.use(notFound)
 app.use(errorHandler)
